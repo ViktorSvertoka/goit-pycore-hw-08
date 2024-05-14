@@ -1,5 +1,6 @@
 from address_book import AddressBook
 from record import Record
+from storage import save_data, load_data
 
 not_found_message = "Contact does not exist, you can add it"
 
@@ -87,7 +88,7 @@ def parse_input(user_input):
 
 
 def main():
-    book = AddressBook()
+    book = load_data()
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
@@ -97,6 +98,7 @@ def main():
             case "hello":
                 print("How can I help you?")
             case "close" | "exit":
+                save_data(book)
                 print("Good bye!")
                 break
             case "add":
